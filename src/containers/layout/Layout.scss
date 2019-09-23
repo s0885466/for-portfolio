@@ -1,0 +1,13 @@
+$bgColorBody: #eee;
+$bgColorMainContainer: #ffffff;
+$widthMainContainer: 1300px;
+
+body {
+  background-color: $bgColorBody;
+}
+
+.main-container {
+background-color: $bgColorMainContainer;
+  width: $widthMainContainer;
+  margin: auto;
+}

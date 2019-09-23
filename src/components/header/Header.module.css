@@ -1,0 +1,19 @@
+.Header ul {
+  display: flex;
+  background-color: #000;
+  list-style: none; }
+  .Header ul a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 15px 15px;
+    transition: .5s linear;
+    flex-basis: 20%; }
+    .Header ul a:hover {
+      background-color: #474747; }
+    .Header ul a svg {
+      height: 15px;
+      margin-right: 5px; }
+
+/*# sourceMappingURL=Header.module.css.map */

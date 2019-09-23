@@ -1,0 +1,26 @@
+.Header {
+  ul {
+    display: flex;
+    background-color: #000;
+    list-style: none;
+
+    a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      padding: 15px 15px;
+      transition: .5s linear;
+      flex-basis: 20%;
+
+      &:hover {
+        background-color: #474747;
+      }
+
+      svg{
+        height: 15px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
