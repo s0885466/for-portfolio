@@ -7,19 +7,25 @@ import Occupations from "../../components/occupations/Occupations";
 import {fetchOccupations} from "../../components/occupations/thunks";
 import {fetchEmployees} from "./thunks";
 
-import {getEmployees} from "../../libs/helpers";
+import {getEmployees, getQueryPath} from "../../libs/helpers";
 import EmployeeElem from "./part/EmployeeElem";
 
 class Employees extends Component {
 
     componentDidMount() {
         this.props.fetchOccupations();
-        this.props.fetchEmployees(1);
+        this.props.fetchEmployees(this.props.query);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.query !== prevProps.query) {
+            this.props.fetchEmployees(this.props.query);
+        }
     }
 
     render() {
+        console.log(this.props.query);
         const {employees} = this.props;
-        console.log(employees);
         return (
             <Layout>
                 <Sidebar className={'col-2'}>
@@ -35,8 +41,9 @@ class Employees extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    employees: getEmployees(state.employees.data)
+const mapStateToProps = (state, ownProps) => ({
+    employees: getEmployees(state.employees.data),
+    query: getQueryPath(ownProps.history.location.pathname)
 });
 
 const mapDispatchToProps = {
