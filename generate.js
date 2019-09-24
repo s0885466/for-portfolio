@@ -14,8 +14,9 @@ module.exports = function () {
             return {
                 id: n,
                 name: faker.name.findName(),
-                avatar: faker.image.people(),
-                id_occupations: Math.floor(Math.random() * occupations.length)
+                avatar: faker.image.avatar(),
+                //id_occupations: Math.floor(Math.random() * occupations.length)
+                occupations: occupations[Math.floor(Math.random() * occupations.length)]
             }
         }),
         occupations: _.times(occupations.length, function (n) {

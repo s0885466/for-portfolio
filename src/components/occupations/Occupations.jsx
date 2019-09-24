@@ -1,17 +1,18 @@
 import React from 'react';
 import {connect} from 'react-redux';
-
+import style from './Occupations.module.scss'
 import {getOccupations} from "../../libs/helpers";
+import {NavLink} from "react-router-dom";
 
 
-const Occupation = ({occupation}) => (
-    <li>{occupation}</li>
+const Occupation = ({occupation, id}) => (
+    <li><NavLink to={`/occupation/${occupation}`}>{occupation}</NavLink></li>
 );
 
 const Occupations = (props) => (
-    <ul>
+    <ul className={style.Occupation}>
         {props.occupations.map(({id, occupation}) => (
-            <Occupation key={id} occupation={occupation}/>
+            <Occupation key={id} occupation={occupation} id={id}/>
         ))}
     </ul>
 );
