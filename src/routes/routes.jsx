@@ -6,6 +6,7 @@ import Employees from "../containers/employees/Employees";
 const routes = (
     <Switch>
         <Route path={'/'} component={Employees} exact/>
+        <Route path={'/employees'} component={Employees}/>
         <Route path={'/occupation/:id'} component={Employees} exact/>
         <Route path={'/employee'} component={Employee}/>
     </Switch>

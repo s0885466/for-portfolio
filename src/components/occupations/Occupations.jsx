@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 
 
 const Occupation = ({occupation, id}) => (
-    <li><NavLink to={`/occupation/${occupation}`}>{occupation}</NavLink></li>
+    <li><NavLink to={`/employees?occupation=${occupation}`}>{occupation}</NavLink></li>
 );
 
 const Occupations = (props) => (

@@ -14,7 +14,7 @@ class Employees extends Component {
 
     componentDidMount() {
         this.props.fetchOccupations();
-        this.props.fetchEmployees(this.props.query);
+        this.props.fetchEmployees('?');
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -24,7 +24,7 @@ class Employees extends Component {
     }
 
     render() {
-        console.log(this.props.query);
+        console.log(this.props.history);
         const {employees} = this.props;
         return (
             <Layout>
@@ -43,7 +43,7 @@ class Employees extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
     employees: getEmployees(state.employees.data),
-    query: getQueryPath(ownProps.history.location.pathname)
+    query: ownProps.history.location.search,
 });
 
 const mapDispatchToProps = {
