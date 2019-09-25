@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+
 import Layout from '../layout/Layout';
 import Sidebar from "../../components/sidebar/Sidebar";
 import Occupations from "../../components/occupations/Occupations";
@@ -9,6 +10,9 @@ import {fetchEmployees} from "./thunks";
 
 import {getEmployees, getQueryPath} from "../../libs/helpers";
 import EmployeeElem from "./part/EmployeeElem";
+import {Link} from "react-router-dom";
+
+var searchQuery = require('search-query-parser');
 
 class Employees extends Component {
 
@@ -24,8 +28,9 @@ class Employees extends Component {
     }
 
     render() {
-        console.log(this.props.history);
-        const {employees} = this.props;
+
+        const {employees, query} = this.props;
+        console.log(searchQuery.parse(query));
         return (
             <Layout>
                 <Sidebar className={'col-2'}>
@@ -36,6 +41,7 @@ class Employees extends Component {
                         <EmployeeElem key={emp.id} name={emp.name} avatar={emp.avatar}/>
                         ))}
                 </section>
+                <div  className={'col-12'}><Link to={`${this.props.query}&_page=1&_limit=20`}>More</Link></div>
             </Layout>
         );
     }
@@ -43,7 +49,7 @@ class Employees extends Component {
 
 const mapStateToProps = (state, ownProps) => ({
     employees: getEmployees(state.employees.data),
-    query: ownProps.history.location.search,
+    query: getQueryPath(ownProps.history.location.search),
 });
 
 const mapDispatchToProps = {
