@@ -3,6 +3,7 @@ import * as R from 'ramda';
 import {
     FETCH_EMPLOYEES_LOADING,
     FETCH_EMPLOYEES_SUCCESS,
+    FETCH_EMPLOYEES_ADD_SUCCESS,
     FETCH_EMPLOYEES_FAILURE
 } from "./constants";
 
@@ -18,6 +19,9 @@ export default function occupationsReducer(state = initialState, {type, payload,
             return {...state, status: 'loading', error: false};
         case FETCH_EMPLOYEES_SUCCESS:
             return {...state, data: R.indexBy(R.prop('id'), payload), status: 'success', error: false};
+        case FETCH_EMPLOYEES_ADD_SUCCESS:
+            return {...state,
+                data: {...state.data, ...R.indexBy(R.prop('id'), payload), status: 'success', error: false}};
         case FETCH_EMPLOYEES_FAILURE:
             return {...state, status: 'failure', error};
         default:

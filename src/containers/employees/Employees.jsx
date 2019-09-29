@@ -18,11 +18,11 @@ class Employees extends Component {
 
     componentDidMount() {
         this.props.fetchOccupations();
-        this.props.fetchEmployees('?');
+        this.props.fetchEmployees();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.props.query);
+        console.log(this.props);
         const {page, limit, selector} = this.props.query;
         if ((selector !== prevProps.query.selector)|| (page!==prevProps.query.page)) {
             this.props.fetchEmployees(selector, page, limit);
@@ -32,6 +32,9 @@ class Employees extends Component {
     render() {
 
         const {employees, query} = this.props;
+        const more = query.selector
+        ? `employees?${query.selector}&_page=${+query.page + 1}&_limit=10`
+            : `employees?&_page=${+query.page + 1}&_limit=10`;
 
         return (
             <Layout>
@@ -43,7 +46,7 @@ class Employees extends Component {
                         <EmployeeElem key={emp.id} name={emp.name} avatar={emp.avatar}/>
                         ))}
                 </section>
-                <div  className={'col-12'}><Link to={`${query.selector}&_page=${+query.page + 1}&_limit=10`}>More</Link></div>
+                <div  className={'col-12'}><Link to={more}>More</Link></div>
             </Layout>
         );
     }
